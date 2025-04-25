@@ -17,3 +17,21 @@
 5. Log all major milestones, decisions, and issues in this file as development progresses.
 
 ---
+
+## [2025-04-25] Storage Layer Unit Testing with Mocks
+
+### Milestone
+- Configured Jest to mock expo-sqlite for storage logic tests.
+- Created a realistic mock for expo-sqlite that simulates CRUD operations on an in-memory array.
+- All storage logic/unit tests now pass in Jest, verifying correct usage of the SQLite API and app logic.
+
+### Decisions
+- Chose mocking for expo-sqlite to enable fast, reliable logic testing in CI and local dev, since full SQLite integration/E2E tests are not currently feasible.
+- Will supplement with device or cloud-based integration testing before release.
+
+### Next Steps
+- Expand unit tests for edge cases and error handling in the storage/model layer.
+- Add more business logic tests for other models.
+- Consider periodic manual or cloud-based integration tests for real SQLite/device coverage.
+
+---
