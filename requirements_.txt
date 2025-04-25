@@ -1,0 +1,160 @@
+---
+
+# 📘 Final Requirements Specification  
+**App Name Suggestion**: **NoteFlow**
+
+---
+
+## 🎯 Purpose
+
+NoteFlow is a mobile-first app for **consuming long-form YouTube content in short, randomized clips** with **background music**, **synced transcripts**, and **note-first learning**.  
+It uses a **dual playlist system** (video + music), lets you tag and filter content, and keeps everything **private, local, and free**.
+
+---
+
+## 📱 Platform
+
+- **Mobile-first** (Android and iOS)
+- Built with **React Native**
+- All data is stored **locally**
+- Uses as **few packages as possible**
+- Does **not** require internet access except for:
+  - Streaming video (YouTube)
+  - Streaming music (YouTube)
+
+---
+
+## 🎬 Video Playback
+
+- User creates a **video playlist** by adding YouTube URLs  
+- Each video is automatically divided into **time slices**, based on the length of assigned background music tracks  
+- During playback:
+  - App plays a **random clip** from the selected playlist or tag filter  
+  - Clip length is adjustable (10s–60s)  
+  - Default clip length: 30s  
+  - Playback speed: **1x to 3x** (user controlled and remembered)  
+- All playback is **synced with a background music track**, based on the time range
+
+---
+
+## 🎵 Background Music
+
+- User also creates a **music playlist** with YouTube Music URLs  
+- The app uses this list to randomly assign background music to each video time slice  
+- A video is divided into slices **based on the duration of each selected music track**  
+  - e.g. Music Track A is 3:17 → first time slice is 0:00–3:17  
+  - Music Track B is 4:05 → next slice is 3:17–7:22  
+- When playing a video clip from timestamp X, EchoStudy plays the corresponding background music:
+  - **From the same timestamp** within its time slice  
+- Music and video are streamed simultaneously and **muxed on-device**  
+- User can press “Change Background Music” to re-roll the track for the current slice
+
+---
+
+## 📄 Transcripts
+
+- Pulled from YouTube API (if available)  
+- Synced to playback timestamp  
+- Transcript scrolls in real time  
+- User can:
+  - Tap to jump
+  - Copy segments into notes
+  - Edit copied segments inside note editor  
+- Transcripts are cached locally for reuse  
+
+---
+
+## 📝 Note-Taking (Core Feature)
+
+- Timestamped, taggable, editable  
+- Fast to write, easy to review  
+- Notes linked to:
+  - Video ID
+  - Timestamp
+  - Tags
+- Notes support:
+  - Text entry
+  - Copy-paste from transcript
+  - Manual tagging
+- Notes are saved locally, optionally exportable (markdown, text, JSON)
+
+---
+
+## 🔖 Bookmarks
+
+- Add a bookmark to any timestamp with one tap  
+- Optional: label the bookmark  
+- All bookmarks are stored and viewable in **Full Mode**  
+  - Shows all bookmarks for the video chronologically  
+  - Tappable to jump directly to the timestamp  
+  - Full Mode is distinct from random/tik-tok-style clip view
+
+---
+
+## 🏷️ Tags
+
+- Tags can be applied to:
+  - Videos
+  - Notes
+  - Bookmarks
+- Filter playback by:
+  - A single tag
+  - Multiple tags
+  - Or by full playlist
+- Tags are user-defined and editable
+
+---
+
+## 📊 Analytics (All Local)
+
+- Total clips watched  
+- Total minutes watched  
+- Total notes taken  
+- Notes per tag  
+- Bookmarks per video  
+- Notes-to-clip ratio  
+- Clip skip rate  
+- Longest continuous streak  
+- Time-of-day heatmap  
+- Tag usage trends over time  
+- Tag streaks / drift detection  
+- Notes-per-music-track  
+- “Best learning days” (based on focus & note density)  
+- Engagement per tag  
+- Learning calendar  
+- Most active topics  
+- Music patterns (which tracks correlate with more notes or deeper sessions)
+
+---
+
+## ⚙️ Settings & Customization
+
+- Default chunk size (persistent)  
+- Default playback speed (persistent)  
+- Theme (dark/light)  
+- Enable/disable transcript view  
+- Set preferred music genre (manual tag)
+- Export data (notes, bookmarks, analytics)  
+
+---
+
+## 🧱 Storage
+
+- **All data is local** (notes, bookmarks, settings, music assignments, analytics)  
+- Stored using:
+  - SQLite or AsyncStorage (TBD)
+- No backend  
+- No login required  
+- Manual import/export supported
+
+---
+
+## 🚫 What It Will Not Include
+
+- No Firebase  
+- No crash reporting  
+- No push notifications  
+- No subscriptions or costs  
+- No Google Analytics  
+- No third-party tracking  
+- No login walls

@@ -1,0 +1,87 @@
+# NoteFlow TDD Gameplan
+
+## 1. Project Setup
+- Scaffold React Native project
+- Set up TypeScript
+- Add testing frameworks:
+  - Unit/Integration: Jest, React Native Testing Library
+  - E2E: Detox
+- Configure CI to run tests on every push
+
+## 2. TDD Principles
+- Red-Green-Refactor:
+  1. Write a failing test (Red)
+  2. Implement just enough code to pass (Green)
+  3. Refactor (Refactor)
+- Write tests before all new features and bug fixes
+- Cover core logic, UI components, integration
+- High coverage, but prioritize meaningful tests
+
+## 3. Development Roadmap (TDD for each step)
+
+### A. Core Data Models & Storage
+1. Define models: Video, MusicTrack, Slice, Note, Bookmark, Tag, Transcript, Analytics
+2. Write tests for model creation, validation, CRUD
+3. Implement storage layer, ensure tests pass
+
+### B. Playlist Management
+1. Write tests for playlist CRUD, tagging, filtering
+2. Implement playlist management UI/logic
+
+### C. Clip Engine
+1. Write tests for time slicing, randomization, music/video assignment
+2. Implement slicing/randomizer logic
+
+### D. Playback UI
+1. Write tests for controls, sync logic, state transitions
+2. Implement playback screen/controls
+
+### E. Transcript System
+1. Write tests for fetching, caching, syncing, editing
+2. Implement transcript fetcher/viewer/editor
+
+### F. Note-Taking System
+1. Write tests for note creation, linking, tagging, editing, exporting
+2. Implement note editor/storage
+
+### G. Bookmark System
+1. Write tests for adding, labeling, jumping to bookmarks
+2. Implement bookmark manager/UI
+
+### H. Tag System
+1. Write tests for tag CRUD, application, filtering
+2. Implement tag management
+
+### I. Analytics Engine
+1. Write tests for metrics collection, aggregation, reporting
+2. Implement analytics dashboard/logic
+
+### J. Settings & Customization
+1. Write tests for settings persistence, theme, export
+2. Implement settings screens/logic
+
+## 4. E2E Testing
+- After each major feature, write Detox E2E tests for user flows:
+  - Onboarding, playlist creation, playback, note-taking, tag filtering, analytics, settings, export
+
+## 5. Iteration & Refactoring
+- Refactor regularly, always with a green test suite
+- Add regression tests for bugs
+
+## 6. MVP Milestones
+1. Data models & storage
+2. Playlist management
+3. Clip engine & playback UI
+4. Note-taking & transcript
+5. Bookmarks, tags, analytics, settings
+6. E2E flows for major user stories
+
+## 7. How TDD Will Be Achieved
+- Tests written before code for every module/component
+- CI pipeline fails if tests do not pass
+- No code merged without passing tests
+- E2E tests ensure integration and UX stability
+
+## 8. Documentation
+- Document modules, test cases, user flows
+- Maintain changelog and coverage reports

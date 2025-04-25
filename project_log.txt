@@ -1,0 +1,19 @@
+# NoteFlow Project Log
+
+## [2025-04-25] Initial Game Plan and Next Steps
+
+### Game Plan
+- Architecture and requirements have been defined and documented in `architecture.txt` and `requirements_.txt`.
+- The project will be developed using Test-Driven Development (TDD), as outlined in `TDD.txt`.
+- The stack: React Native, SQLite/Realm, minimal dependencies, local-first, privacy-focused.
+
+### Next Steps
+1. Scaffold the React Native project and set up TypeScript.
+2. Add and configure Jest, React Native Testing Library, and Detox for TDD.
+3. Set up CI to run tests on every push.
+4. Begin with core data models (Video, MusicTrack, Slice, Note, Bookmark, Tag, Transcript, Analytics):
+    - Write tests for creation, validation, and CRUD.
+    - Implement storage layer and ensure all tests pass.
+5. Log all major milestones, decisions, and issues in this file as development progresses.
+
+---

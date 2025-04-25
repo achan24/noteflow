@@ -1,0 +1,94 @@
+# NoteFlow Architecture Plan
+
+## 1. Technology Stack
+- Frontend: React Native (for Android & iOS)
+- Local Storage: SQLite (via `react-native-sqlite-storage` or `expo-sqlite`), or optionally Realm DB
+- Media Playback: `react-native-video` for YouTube playback, custom muxing logic for music/video sync
+- State Management: Redux Toolkit or React Context
+- Transcripts: YouTube API integration (only for transcript retrieval)
+- Other: Minimal dependencies, focus on privacy and offline capability
+
+## 2. Core Modules & Components
+
+a. Playlist Management
+- Video Playlist: CRUD for YouTube URLs, tagging, filtering
+- Music Playlist: CRUD for YouTube Music URLs, tagging, filtering
+
+b. Clip Engine
+- Time Slicing Logic: Slices videos based on music track durations
+- Randomizer: Selects random clips/tags for playback
+- Muxing Engine: Streams and synchronizes video and music tracks
+
+c. Playback UI
+- Video Player: Displays current clip, playback controls (play/pause, skip, speed, chunk size)
+- Music Player: Background music, re-roll option
+- Progress Bar: Shows current position in clip/music
+
+d. Transcript System
+- Transcript Fetcher: Pulls and caches YouTube transcripts
+- Transcript Viewer: Scrolls in sync with playback, tap-to-jump, copy-to-note
+
+e. Note-Taking System
+- Note Editor: Timestamped, taggable, editable notes
+- Note Storage: Linked to video/timestamp/tag, export options
+
+f. Bookmark System
+- Bookmark Manager: Add/view bookmarks, labels, full mode navigation
+
+g. Tag System
+- Tag Manager: CRUD for tags, apply to videos/notes/bookmarks, filter logic
+
+h. Analytics Engine
+- Metrics Collector: Local stats (clips watched, notes, streaks, tag usage, etc.)
+- Analytics Dashboard: Visualizes stats, trends, heatmaps
+
+i. Settings & Customization
+- Settings Store: Chunk size, playback speed, theme, transcript toggle, genre preference
+- Export Manager: Data export (notes, bookmarks, analytics)
+
+## 3. Data Model (Simplified)
+
+- Video
+  - id, url, title, tags[], slices[]
+- MusicTrack
+  - id, url, title, duration, tags[]
+- Slice
+  - video_id, music_track_id, start, end, assigned_music, assigned_tags[]
+- Note
+  - id, video_id, timestamp, text, tags[]
+- Bookmark
+  - id, video_id, timestamp, label, tags[]
+- Tag
+  - id, name, type (video/note/bookmark)
+- Transcript
+  - video_id, segments[{start, end, text}]
+- Analytics
+  - stats (various metrics as outlined)
+
+## 4. Key Flows
+
+1. Onboarding: User creates playlists (video/music), sets preferences.
+2. Playback: Random clip selected → Sliced by music track → Synced playback → Transcript scrolls → User can take notes/bookmarks.
+3. Note-Taking: User writes/edit notes, links to current clip/timestamp/tag.
+4. Bookmarking: User bookmarks timestamp, optionally labels.
+5. Tagging: User tags content, filters playback by tags.
+6. Analytics: All interactions tracked locally, visualized in dashboard.
+7. Settings: User customizes defaults, theme, exports data.
+
+## 5. Offline & Privacy Considerations
+- All data (playlists, notes, bookmarks, analytics) stored locally.
+- Only external requests: YouTube video/music streaming, transcript fetch (if available).
+
+## 6. Minimal Dependencies
+- Use built-in or React Native core libraries where possible.
+- Only add packages for: video/music playback, SQLite/Realm, YouTube API, and optional UI components.
+
+## 7. Extensibility
+- Modular structure for easy addition of features (e.g., more analytics, export formats, new UI themes).
+
+---
+
+Next Steps
+- Define the file/folder structure for the React Native app.
+- Scaffold the project and core modules.
+- Prioritize MVP features: playlist management, clip engine, playback UI, note-taking, and basic analytics.
